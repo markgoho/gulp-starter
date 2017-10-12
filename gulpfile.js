@@ -1,10 +1,11 @@
 const gulp = require('gulp');
+const pump = require('pump');
+
 const composer = require('gulp-uglify/composer');
 const uglifyjs = require('uglify-es');
-const pump = require('pump');
-const browserSync = require('browser-sync').create();
-
 const uglify = composer(uglifyjs, console);
+
+const browserSync = require('browser-sync').create();
 
 gulp.task('hello', function() {
   console.log('Hello everyone!');
@@ -25,12 +26,12 @@ gulp.task('task-name', function() {
 
 // **/*.js
 // **/ is a wildcard that matches directories, in this case
-// this will match an js files from the root directory and down
+// this will match any js files from the root directory and down
 
 // !not-this-file.js
 // ! tells gulp to exclude that pattern from matched files
 
-// *.+(js/ts)
+// *.+(js|ts)
 // The plus + and parentheses () allow gulp to match multiple patterns
 // with different ones separated by the pipe | character. In this
 // example, gulp matches any file neding with .js or .ts in the root folder.
@@ -43,8 +44,9 @@ gulp.task('compress', function(cb) {
 // Watch files, run tasks, put inside a task
 gulp.watch('files/to/watch', ['tasks', 'to', 'run']);
 
-gulp.task('watch-js', function() {
-  gulp.watch('src/js/*.js', ['compress']);
+gulp.task('watch', ['browserSync'], function() {
+  gulp.watch('src/*.html', browserSync.reload);
+  gulp.watch('src/js/*.js', browserSync.reload);
 });
 
 // BrowserSync!!!!!!!!
