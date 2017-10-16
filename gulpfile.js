@@ -7,6 +7,8 @@ const uglify = composer(uglifyjs, console);
 
 const browserSync = require('browser-sync').create();
 
+const sass = require('gulp-sass');
+
 gulp.task('hello', function() {
   console.log('Hello everyone!');
 });
@@ -43,6 +45,13 @@ gulp.task('compress', function(cb) {
 
 // Watch files, run tasks, put inside a task
 gulp.watch('files/to/watch', ['tasks', 'to', 'run']);
+
+gulp.task('sass', function() {
+  return gulp
+    .src('src/scss/style.scss')
+    .pipe(sass())
+    .pipe(gulp.dest(''));
+});
 
 gulp.task('watch', ['browserSync'], function() {
   gulp.watch('src/*.html', browserSync.reload);
