@@ -5,8 +5,9 @@ const composer = require('gulp-uglify/composer');
 const uglifyjs = require('uglify-es');
 const uglify = composer(uglifyjs, console);
 
+const useref = require('gulp-useref');
+const gulpIf = require('gulp-if');
 const browserSync = require('browser-sync').create();
-
 const sass = require('gulp-sass');
 
 gulp.task('hello', function() {
@@ -56,6 +57,14 @@ gulp.task('sass', function() {
         stream: true
       })
     );
+});
+
+gulp.task('useref', function() {
+  return gulp
+    .src('src/index.html')
+    .pipe(useref())
+    .pipe(gulpIf('*.js', uglify()))
+    .pipe(gulp.dest('dist'));
 });
 
 gulp.task('watch', ['browserSync', 'sass'], function() {
