@@ -1,4 +1,7 @@
+$primary-color: purple;
+
 body {
-  width: 100vw;
+  width: percentage(5/7);
   height: 100vh;
+  background: $primary-color;
 }

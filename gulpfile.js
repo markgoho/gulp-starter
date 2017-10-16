@@ -50,10 +50,16 @@ gulp.task('sass', function() {
   return gulp
     .src('src/scss/style.scss')
     .pipe(sass())
-    .pipe(gulp.dest(''));
+    .pipe(gulp.dest('src/css'))
+    .pipe(
+      browserSync.reload({
+        stream: true
+      })
+    );
 });
 
-gulp.task('watch', ['browserSync'], function() {
+gulp.task('watch', ['browserSync', 'sass'], function() {
+  gulp.watch('src/scss/style.scss', ['sass']);
   gulp.watch('src/*.html', browserSync.reload);
   gulp.watch('src/js/*.js', browserSync.reload);
 });
