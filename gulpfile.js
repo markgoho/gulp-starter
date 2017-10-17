@@ -4,6 +4,8 @@ const pump = require('pump');
 const composer = require('gulp-uglify/composer');
 const uglifyjs = require('uglify-es');
 const uglify = composer(uglifyjs, console);
+const cssnano = require('gulp-cssnano');
+const imagemin = require('gulp-imagemin');
 
 const useref = require('gulp-useref');
 const gulpIf = require('gulp-if');
@@ -64,7 +66,15 @@ gulp.task('useref', function() {
     .src('src/index.html')
     .pipe(useref())
     .pipe(gulpIf('*.js', uglify()))
+    .pipe(gulpIf('*.css', cssnano()))
     .pipe(gulp.dest('dist'));
+});
+
+gulp.task('images', function() {
+  return gulp
+    .src('src/img/**/*.+(png|jpg|gif|svg)')
+    .pipe(imagemin())
+    .pipe(gulp.dest('dist/img'));
 });
 
 gulp.task('watch', ['browserSync', 'sass'], function() {
