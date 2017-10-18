@@ -1,7 +1,7 @@
 const initialCats = [
   {
     clickCount: 0,
-    name: 'Tabby',
+    name: 'Bobby',
     imgSrc: 'img/cat1.jpg',
     nicknames: ['Tabtab', 'T-bone', 'Mr. T', 'Tabitha Tab Tabby Catty Cat']
   },
