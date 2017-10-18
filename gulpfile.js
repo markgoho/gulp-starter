@@ -55,6 +55,10 @@ gulp.task('watch', ['browserSync', 'sass'], function() {
   gulp.watch('src/js/*.js', browserSync.reload);
 });
 
+gulp.task('watch:sass', ['sass'], function() {
+  gulp.watch('src/scss/style.scss', ['sass']);
+});
+
 // BrowserSync!!!!!!!!
 gulp.task('browserSync', function() {
   browserSync.init({
