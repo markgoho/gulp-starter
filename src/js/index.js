@@ -93,3 +93,7 @@ const Cat = function(data) {
 };
 
 ko.applyBindings(new ViewModel());
+
+const body = document.body;
+const path = 'img/cat1.jpg';
+body.style.backgroundImage = `url(${path})`;

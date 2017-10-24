@@ -1,7 +1,72 @@
-$primary-color: blue;
+$primary-color: red;
+$secondary-color: blue;
+$highlight: purple;
+$background: grey;
+
+$height: 100;
+$width: 100;
+
+$heading-font: Helvetica, sans-serif;
+$body-font: Helvetica, sans-serif;
+$heading: 2em;
 
 body {
-  width: percentage(5/7);
+  width: 71.42857%;
   height: 100vh;
   background: $primary-color;
+
+  h1 {
+    font-size: $heading;
+  }
+
+  > ul {
+    display: inline-block;
+  }
+
+  &-large {
+    width: 100%;
+  }
+}
+
+div {
+  width: $height / $width;
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+div {
+  @include border-radius(10px);
+}
+
+@mixin bp($point) {
+  @if $point == papa-bear {
+    @media (max-width: 1600px) {
+      @content;
+    }
+  } @else if $point == mama-bear {
+    @media (max-width: 1250px) {
+      @content;
+    }
+  } @else if $point == baby-bear {
+    @media (max-width: 600px) {
+      @content;
+    }
+  }
+}
+
+div {
+  @media (max-width: 64em) {
+    width: 50%;
+  }
+}
+
+ul {
+  @media (max-width: 64em) {
+    width: 50%;
+  }
 }

@@ -1,4 +1,27 @@
 body {
   width: 71.42857%;
   height: 100vh;
-  background: blue; }
+  background: red; }
+  body h1 {
+    font-size: 2em; }
+  body > ul {
+    display: inline-block; }
+  body-large {
+    width: 100%; }
+
+div {
+  width: 1; }
+
+div {
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  border-radius: 10px; }
+
+@media (max-width: 64em) {
+  div {
+    width: 50%; } }
+
+@media (max-width: 64em) {
+  ul {
+    width: 50%; } }
